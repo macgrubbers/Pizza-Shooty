@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://p8e2l5gchld2"]
+
+[ext_resource type="Script" path="res://scripts/Weapons/shotgun.gd" id="1_q6hmn"]
+[ext_resource type="Texture2D" uid="uid://db4qndanph1mt" path="res://assets/shotgun01.png" id="2_er11t"]
+
+[node name="Shotgun" type="Node2D"]
+script = ExtResource("1_q6hmn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(14, 0)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_er11t")
+
+[node name="BulletSpawnPoint" type="Node2D" parent="."]
+position = Vector2(62, -10)

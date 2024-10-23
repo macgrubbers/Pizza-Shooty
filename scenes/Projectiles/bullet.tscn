@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://vkxwpg7ceyd0"]
+
+[ext_resource type="Script" path="res://scripts/Projectiles/bullet.gd" id="1_ax7p3"]
+[ext_resource type="AudioStream" uid="uid://dq05a2ska8t6s" path="res://assets/sound_effects/hitHurt.wav" id="2_ea631"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o2bbv"]
+size = Vector2(5.8, 4)
+
+[node name="Bullet" type="Area2D" groups=["bullet"]]
+collision_layer = 16
+collision_mask = 43
+script = ExtResource("1_ax7p3")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0, 0.372549, 0.45098, 1)
+polygon = PackedVector2Array(-2, -2, -2, 2, 0, 2, 2.5, 1.5, 3.7, 0, 2.5, -1.5, 0, -2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.8, 0)
+shape = SubResource("RectangleShape2D_o2bbv")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ea631")
+volume_db = -12.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

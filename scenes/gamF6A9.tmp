@@ -1,0 +1,89 @@
+[gd_scene load_steps=6 format=3 uid="uid://bduw5gb057ino"]
+
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_5vnjt"]
+[ext_resource type="PackedScene" uid="uid://cqpatfifsn3sg" path="res://scenes/People/player.tscn" id="2_n47hv"]
+[ext_resource type="Script" path="res://scripts/UI.gd" id="3_dhyx4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7nvpe"]
+size = Vector2(2990, 70.6563)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_akqs3"]
+size = Vector2(112, 2379.5)
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_5vnjt")
+shake_decay_rate = 5.0
+
+[node name="Background" type="Polygon2D" parent="."]
+z_index = -50
+color = Color(0, 0.0705882, 0.0980392, 1)
+polygon = PackedVector2Array(-832, -896, -832, 1408, 2176, 1408, 2176, -896)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Background"]
+collision_layer = 2
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/StaticBody2D2"]
+position = Vector2(671, -888.328)
+shape = SubResource("RectangleShape2D_7nvpe")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Background"]
+collision_layer = 2
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/StaticBody2D"]
+position = Vector2(671, 1441)
+shape = SubResource("RectangleShape2D_7nvpe")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Background"]
+collision_layer = 2
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/StaticBody2D3"]
+position = Vector2(-836, 274)
+shape = SubResource("RectangleShape2D_akqs3")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Background"]
+collision_layer = 2
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/StaticBody2D4"]
+position = Vector2(2182, 274.25)
+shape = SubResource("RectangleShape2D_akqs3")
+
+[node name="Ground" type="Polygon2D" parent="."]
+z_index = -49
+position = Vector2(-1024.25, -1143.83)
+scale = Vector2(2.94141, 4.42545)
+color = Color(0.913725, 0.847059, 0.65098, 1)
+polygon = PackedVector2Array(64, 56, 64, 320, 64, 584, 152.255, 584, 1088, 584, 1088, 176.31, 1088, 56, 670.247, 56, 569.748, 56)
+
+[node name="Player" parent="." groups=["right_hand"] instance=ExtResource("2_n47hv")]
+z_index = -2
+position = Vector2(576, 323)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_dhyx4")
+metadata/_edit_use_anchors_ = true
+
+[node name="AmmoLabel" type="Label" parent="CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.6
+anchor_top = -1.225
+anchor_right = 1.6
+anchor_bottom = -1.225
+offset_left = 952.0
+offset_top = 70.0
+offset_right = 1003.0
+offset_bottom = 93.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true

@@ -1,0 +1,125 @@
+[gd_scene load_steps=14 format=3 uid="uid://cqpatfifsn3sg"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_sy1wy"]
+[ext_resource type="AudioStream" uid="uid://b5y5j2t81dq1l" path="res://assets/sound_effects/laserShoot.wav" id="2_qiobg"]
+[ext_resource type="PackedScene" uid="uid://bygtwe4lhelbl" path="res://scenes/PlayerInventory.tscn" id="3_2ah8m"]
+[ext_resource type="Texture2D" uid="uid://cxegaltytyepa" path="res://assets/player-sheet.png" id="4_7p86a"]
+
+[sub_resource type="Curve" id="Curve_5phf1"]
+_data = [Vector2(0, 0.384615), 0.0, 0.0, 0, 0, Vector2(0.320988, 0.978022), 0.0, 0.0, 0, 0, Vector2(0.460905, 0.626374), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_saytj"]
+curve = SubResource("Curve_5phf1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0nije"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(5, 1, 1)
+spread = 42.0
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
+scale_min = 6.0
+scale_max = 12.0
+scale_curve = SubResource("CurveTexture_saytj")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_osgi4"]
+atlas = ExtResource("4_7p86a")
+region = Rect2(0, 0, 23, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nepfd"]
+atlas = ExtResource("4_7p86a")
+region = Rect2(23, 0, 23, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q6uip"]
+atlas = ExtResource("4_7p86a")
+region = Rect2(46, 0, 23, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yaf4y"]
+atlas = ExtResource("4_7p86a")
+region = Rect2(69, 0, 23, 38)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2erxt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_osgi4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nepfd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q6uip")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yaf4y")
+}],
+"loop": true,
+"name": &"all",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_osgi4")
+}],
+"loop": true,
+"name": &"walk_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q6uip")
+}],
+"loop": true,
+"name": &"walk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yaf4y")
+}],
+"loop": true,
+"name": &"walk_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nepfd")
+}],
+"loop": true,
+"name": &"walk_up",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eq335"]
+radius = 21.0
+height = 84.0
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_mask = 63
+motion_mode = 1
+script = ExtResource("1_sy1wy")
+
+[node name="MovementTrailEffect" type="GPUParticles2D" parent="."]
+position = Vector2(0, 31)
+emitting = false
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_0nije")
+lifetime = 0.1
+one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_qiobg")
+volume_db = -12.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_2erxt")
+animation = &"walk_left"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_eq335")
+
+[node name="PlayerInventory" parent="." instance=ExtResource("3_2ah8m")]
+visible = false

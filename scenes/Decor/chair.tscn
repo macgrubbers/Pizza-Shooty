@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://drprqv8w4mq"]
+
+[ext_resource type="Script" path="res://scenes/Decor/chair.gd" id="1_4ptuk"]
+[ext_resource type="Texture2D" uid="uid://pj3in7f6qjin" path="res://assets/chair_test.png" id="1_sxcpr"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5wuog"]
+radius = 6.0
+height = 16.0
+
+[node name="Chair" type="Area2D" groups=["chair"]]
+collision_layer = 4
+collision_mask = 47
+script = ExtResource("1_4ptuk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_5wuog")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("1_sxcpr")
+
+[node name="SitLocation" type="Node2D" parent="."]
+position = Vector2(0, -12)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

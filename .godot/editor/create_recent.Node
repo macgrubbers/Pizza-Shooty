@@ -1,0 +1,14 @@
+ColorRect
+GridContainer
+Sprite2D
+Panel
+TextEdit
+CollisionShape2D
+AnimatedSprite2D
+Control
+CanvasLayer
+SubViewport
+Node2D
+Area2D
+StaticBody2D
+Label

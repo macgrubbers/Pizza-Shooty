@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://bygtwe4lhelbl"]
+
+[ext_resource type="Script" path="res://scenes/PlayerInventory.gd" id="1_yvyw0"]
+[ext_resource type="PackedScene" uid="uid://bv731ynp1brd3" path="res://scenes/InventorySlot.tscn" id="2_gkq8n"]
+
+[node name="PlayerInventory" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_yvyw0")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -124.0
+offset_top = -46.0
+offset_right = 125.0
+offset_bottom = 48.0
+color = Color(0.129412, 0.113725, 0.423529, 1)
+
+[node name="TextEdit" type="TextEdit" parent="ColorRect"]
+layout_mode = 0
+offset_left = 72.0
+offset_right = 173.0
+offset_bottom = 26.0
+text = "INVENTORY"
+
+[node name="GridContainer" type="GridContainer" parent="ColorRect"]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 55.0
+offset_right = 223.0
+offset_bottom = 95.0
+theme_override_constants/h_separation = 49
+columns = 5
+
+[node name="InventorySlot01" parent="ColorRect/GridContainer" instance=ExtResource("2_gkq8n")]
+layout_mode = 2
+
+[node name="InventorySlot02" parent="ColorRect/GridContainer" instance=ExtResource("2_gkq8n")]
+layout_mode = 2
+
+[node name="InventorySlot03" parent="ColorRect/GridContainer" instance=ExtResource("2_gkq8n")]
+layout_mode = 2
+
+[node name="InventorySlot04" parent="ColorRect/GridContainer" instance=ExtResource("2_gkq8n")]
+layout_mode = 2
+
+[node name="InventorySlot05" parent="ColorRect/GridContainer" instance=ExtResource("2_gkq8n")]
+layout_mode = 2
