@@ -5,3 +5,4 @@ res://scenes/pickup.tscn
 res://scenes/Weapons/pistol.tscn
 res://scenes/PlayerInventory.tscn
 res://scenes/InventorySlot.tscn
+res://scripts/player.gd

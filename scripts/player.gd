@@ -88,8 +88,8 @@ func add_to_inventory(pickup: int, quantity: int):
 	$PlayerInventory.add_item(Vector2i(pickup, quantity))
 	var newGun = load("res://scenes/Weapons/shotgun.tscn").instantiate()
 	newGun.connect("applyKick", _on_apply_kick)
-	#add_child(newGun)
-	#rightHand = newGun
+	add_child(newGun)
+	rightHand = newGun
 
 func _on_apply_kick(kickVectorAndDuration: Vector3):
 	movementArray.append(kickVectorAndDuration)
