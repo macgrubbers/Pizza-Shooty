@@ -1,8 +1,0 @@
-res://scenes/game.tscn
-res://shader/bot_flash.gdshader
-res://scenes/People/player.tscn
-res://scenes/pickup.tscn
-res://scenes/Weapons/pistol.tscn
-res://scenes/PlayerInventory.tscn
-res://scenes/InventorySlot.tscn
-res://scripts/player.gd
