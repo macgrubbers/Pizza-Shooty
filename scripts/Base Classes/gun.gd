@@ -28,28 +28,28 @@ func _ready():
 	reloadTimer.connect("timeout", _on_reload_timer_timeout)
 	reloadTimer.set_wait_time(timeToReload)
 	add_child(reloadTimer)
-		
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-	
+
 func _physics_process(delta):
-	if Input.is_action_just_pressed("shot"):
-		shoot(delta)
-	if Input.is_action_just_pressed("reload"):
-		reload()
+	if ( get_parent().is_in_group("player") ):
+		if Input.is_action_just_pressed("shot"):
+			shoot()
+		if Input.is_action_just_pressed("reload"):
+			reload()
 
 		
 
-func shoot(delta):
+func shoot():
 	if (currentAmmo != 0):
 		if (!reloadTimer.is_stopped()):
 			reloadTimer.stop()
 		# Shoot bullets per shot
 		for n in range(bulletsPerShot):
 			var bullet = bullet_scene.instantiate()
-			bullet.setup(bulletSpawnPoint.global_transform)
+			var parentLayer = 1
+			if ( get_parent().is_in_group("enemy") ):
+				parentLayer = 4
+			bullet.setup(bulletSpawnPoint.global_transform, parentLayer)
 			
 			# Give all shots randomness in spread and velocity
 			var rot = bullet.get_rotation()
@@ -70,7 +70,6 @@ func reload():
 
 
 func _on_reload_timer_timeout():
-	print("Reloaded!")
 	currentAmmo = maxAmmo
 	reloadTimer.stop()
 

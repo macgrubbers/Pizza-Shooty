@@ -33,12 +33,11 @@ func _ready():
 func _process(delta):
 	pass
 	
-func shoot(delta):
+func shoot():
 	if (!isBetweenShots):
-		super(delta)
+		super()
 		isBetweenShots = true
 		betweenShotsTimer.start()
-		print(betweenShotsTimer.is_stopped())
 	else:
 		print("click!")
 

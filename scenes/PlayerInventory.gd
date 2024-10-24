@@ -51,7 +51,6 @@ func get_next_available_slot(stackable: bool) -> int:
 	
 	# First, search for empty spots
 	for slotIndex in range(inventoryArray.size(),0,-1):
-		print(slotIndex)
 		if ( inventoryArray[slotIndex-1].is_empty ):
 			returnIndex = slotIndex-1
 	

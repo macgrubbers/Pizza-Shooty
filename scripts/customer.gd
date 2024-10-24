@@ -85,5 +85,4 @@ func find_nearest_chair():
 
 func sit(chairPos: Vector2):
 	position = chairPos
-	print(position)
 	is_sitting = true

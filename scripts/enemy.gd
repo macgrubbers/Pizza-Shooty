@@ -13,9 +13,28 @@ var push_timer: float = 0.0
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var damage_text: Label = $DamageTextContainer/DamageText
 @onready var blood_particle = preload("res://scenes/blood_particle.tscn")
+@onready var pistol_scene = preload("res://scenes/Weapons/pistol.tscn")
+@onready var shotgun_scene = preload("res://scenes/Weapons/shotgun.tscn")
+
+var rightHand
+var shootTimer: Timer
+var timeBetweenShots = randf_range(1,4)
 
 func _ready():
 	damage_text.visible = false
+	var enemyGun = pistol_scene.instantiate()
+	if ( randi_range(0,1) == 1):
+		enemyGun = shotgun_scene.instantiate()
+	add_child(enemyGun)
+	rightHand = enemyGun
+	
+	#temporary, shoot at random intervals
+	shootTimer = Timer.new()
+	shootTimer.set_one_shot(true)
+	shootTimer.connect("timeout", _on_between_shots_timeout)
+	shootTimer.set_wait_time(timeBetweenShots)
+	add_child(shootTimer)
+	shootTimer.start()
 
 func setup(pos: Vector2, _player: CharacterBody2D):
 	position = pos
@@ -27,13 +46,16 @@ func _physics_process(delta):
 	# Handle push
 	push_back(delta)
 	move_and_slide()
+	
+	# TODO: check if holding weapon
+	aim_and_shoot()
 
 func get_hit(damage: int, bullet_trans: Transform2D):
 	health -= damage
 	damage_text.text = str(damage)
 	animation_tree['parameters/conditions/is_damaged'] = true
 	if health <= 0:
-		animation_tree['parameters/conditions/is_destroyed'] = true
+		destroy()
 	# Bleeding effect
 	var bleeding_effect = blood_particle.instantiate()
 	get_tree().root.add_child(bleeding_effect)
@@ -62,3 +84,13 @@ func _on_animation_tree_animation_finished(anim_name):
 	elif anim_name == "destroy":
 		animation_tree['parameters/conditions/is_destroyed'] = false
 		destroy()
+		
+func aim_and_shoot():
+	rightHand.look_at(player.position)
+	rightHand.flip()
+	
+func _on_between_shots_timeout():
+	print("Timeout!")
+	rightHand.shoot()
+	timeBetweenShots = randf_range(1,4)
+	shootTimer.start()
