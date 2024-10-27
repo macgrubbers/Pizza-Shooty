@@ -7,7 +7,6 @@ extends Node2D
 var start_pos: Vector2
 var enemy_list: Array = []
 var table_list: Array = []
-var chair_list: Array = []
 var customer_list: Array = []
 var pickup_list: Array = []
 var bullet_list: Array = []
@@ -86,7 +85,8 @@ func setup_level():
 
 func spawn_customer():
 	var newCustomer = customer_class.instantiate()
-	var startingPosition = Vector2(randf_range(100,1000),500)
+	var startingPosition = $Stage/Enterance.global_position
+	var chair_list = get_tree().get_nodes_in_group('chair')
 	newCustomer.set_position(startingPosition)
 	newCustomer.setup(startingPosition, chair_list)
 	newCustomer.connect("customer_destroyed", on_customer_destroyed)

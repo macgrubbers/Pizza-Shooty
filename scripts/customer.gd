@@ -28,14 +28,15 @@ func setup(pos: Vector2, _chairArray: Array):
 	find_nearest_chair()
 
 func _physics_process(delta):
-	if closestChair.is_sat_in:
-		find_nearest_chair()
-	if status == "Walking" and !is_sitting:
-		var dir = (closestChair.global_position - global_position).normalized()
-		velocity = dir * speed
-		# Handle push
-		push_back(delta)
-		move_and_slide()
+	if closestChair:
+		if closestChair.is_sat_in:
+			find_nearest_chair()
+		if status == "Walking" and !is_sitting:
+			var dir = (closestChair.global_position - global_position).normalized()
+			velocity = dir * speed
+			# Handle push
+			push_back(delta)
+			move_and_slide()
 	#if status == "At Table":
 		#pass
 	

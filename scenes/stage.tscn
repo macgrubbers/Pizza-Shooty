@@ -1,0 +1,359 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvd32pgkuim1i"]
+
+[ext_resource type="PackedScene" uid="uid://dgsmehl810rye" path="res://scenes/Decor/Wall.tscn" id="2_twmpn"]
+[ext_resource type="PackedScene" uid="uid://bg7xr1u7y8vnu" path="res://scenes/Decor/table.tscn" id="3_w3kk2"]
+[ext_resource type="PackedScene" uid="uid://drprqv8w4mq" path="res://scenes/Decor/chair.tscn" id="4_aovj5"]
+[ext_resource type="PackedScene" uid="uid://bkb07wnnagn7j" path="res://scenes/Decor/Booth.tscn" id="4_oyvfe"]
+
+[node name="Stage" type="Polygon2D"]
+z_index = -10
+color = Color(0.658824, 0.658824, 0.658824, 1)
+polygon = PackedVector2Array(-800, -800, 800, -800, 800, 500, -800, 500)
+
+[node name="Wall" parent="." instance=ExtResource("2_twmpn")]
+position = Vector2(-804, -146)
+scale = Vector2(1, 65)
+
+[node name="Wall1" parent="." instance=ExtResource("2_twmpn")]
+position = Vector2(-3, -801)
+scale = Vector2(80, 1)
+
+[node name="Wall2" parent="." instance=ExtResource("2_twmpn")]
+position = Vector2(0, 501)
+scale = Vector2(80, 1)
+
+[node name="Wall3" parent="." instance=ExtResource("2_twmpn")]
+position = Vector2(789, -143)
+scale = Vector2(1, 65)
+
+[node name="Wall4" parent="." instance=ExtResource("2_twmpn")]
+position = Vector2(394, -671)
+scale = Vector2(3, 12)
+
+[node name="Wall5" parent="." instance=ExtResource("2_twmpn")]
+position = Vector2(396, -275)
+scale = Vector2(3, 12)
+
+[node name="Wall6" parent="." instance=ExtResource("2_twmpn")]
+position = Vector2(396, 110)
+scale = Vector2(3, 12)
+
+[node name="Wall7" parent="." instance=ExtResource("2_twmpn")]
+position = Vector2(394, 258)
+rotation = 1.5708
+scale = Vector2(3, 27)
+
+[node name="Enterance" type="Node2D" parent="."]
+position = Vector2(393.681, 475.67)
+
+[node name="EnteranceMat" type="Polygon2D" parent="Enterance"]
+polygon = PackedVector2Array(-40, 20, 40, 20, 40, -20, -40, -20)
+
+[node name="Kitchen" type="Node2D" parent="."]
+position = Vector2(720.697, -762.691)
+
+[node name="KitchenMat" type="Polygon2D" parent="Kitchen"]
+polygon = PackedVector2Array(-40, 20, 40, 20, 40, -20, -40, -20)
+
+[node name="Booth1" parent="." instance=ExtResource("4_oyvfe")]
+position = Vector2(452, -700)
+
+[node name="Booth2" parent="." instance=ExtResource("4_oyvfe")]
+position = Vector2(459, -273)
+
+[node name="Booth3" parent="." instance=ExtResource("4_oyvfe")]
+position = Vector2(459, 140)
+
+[node name="Booth4" parent="." instance=ExtResource("4_oyvfe")]
+position = Vector2(627, 140)
+
+[node name="Booth5" parent="." instance=ExtResource("4_oyvfe")]
+position = Vector2(639, -274)
+
+[node name="Booth6" parent="." instance=ExtResource("4_oyvfe")]
+position = Vector2(618, -704)
+
+[node name="Booth7" parent="." instance=ExtResource("4_oyvfe")]
+position = Vector2(326, 138)
+
+[node name="Booth8" parent="." instance=ExtResource("4_oyvfe")]
+position = Vector2(328, -277)
+
+[node name="Booth9" parent="." instance=ExtResource("4_oyvfe")]
+position = Vector2(155, -699)
+
+[node name="Booth10" parent="." instance=ExtResource("4_oyvfe")]
+position = Vector2(323, -698)
+
+[node name="Booth11" parent="." instance=ExtResource("4_oyvfe")]
+position = Vector2(156, 136)
+
+[node name="Booth12" parent="." instance=ExtResource("4_oyvfe")]
+position = Vector2(156, -274)
+
+[node name="Table1" parent="." instance=ExtResource("3_w3kk2")]
+position = Vector2(-608, -640)
+
+[node name="Chair1" parent="Table1" instance=ExtResource("4_aovj5")]
+position = Vector2(-86, -2)
+
+[node name="Chair2" parent="Table1" instance=ExtResource("4_aovj5")]
+position = Vector2(88, -2)
+
+[node name="Chair3" parent="Table1" instance=ExtResource("4_aovj5")]
+position = Vector2(46, 37)
+
+[node name="Chair4" parent="Table1" instance=ExtResource("4_aovj5")]
+position = Vector2(-38, 38)
+
+[node name="Chair5" parent="Table1" instance=ExtResource("4_aovj5")]
+position = Vector2(-39, -74)
+
+[node name="Chair6" parent="Table1" instance=ExtResource("4_aovj5")]
+position = Vector2(42, -73)
+
+[node name="Table2" parent="." instance=ExtResource("3_w3kk2")]
+position = Vector2(-93, -642)
+
+[node name="Chair1" parent="Table2" instance=ExtResource("4_aovj5")]
+position = Vector2(-86, -2)
+
+[node name="Chair2" parent="Table2" instance=ExtResource("4_aovj5")]
+position = Vector2(88, -2)
+
+[node name="Chair3" parent="Table2" instance=ExtResource("4_aovj5")]
+position = Vector2(46, 37)
+
+[node name="Chair4" parent="Table2" instance=ExtResource("4_aovj5")]
+position = Vector2(-38, 38)
+
+[node name="Chair5" parent="Table2" instance=ExtResource("4_aovj5")]
+position = Vector2(-39, -74)
+
+[node name="Chair6" parent="Table2" instance=ExtResource("4_aovj5")]
+position = Vector2(42, -73)
+
+[node name="Table3" parent="." instance=ExtResource("3_w3kk2")]
+position = Vector2(-342, -453)
+
+[node name="Chair3" parent="Table3" instance=ExtResource("4_aovj5")]
+position = Vector2(46, 37)
+
+[node name="Chair4" parent="Table3" instance=ExtResource("4_aovj5")]
+position = Vector2(-38, 38)
+
+[node name="Chair5" parent="Table3" instance=ExtResource("4_aovj5")]
+position = Vector2(-39, -74)
+
+[node name="Chair6" parent="Table3" instance=ExtResource("4_aovj5")]
+position = Vector2(42, -73)
+
+[node name="Table4" parent="." instance=ExtResource("3_w3kk2")]
+position = Vector2(-606, -300)
+
+[node name="Chair2" parent="Table4" instance=ExtResource("4_aovj5")]
+position = Vector2(88, -2)
+
+[node name="Chair3" parent="Table4" instance=ExtResource("4_aovj5")]
+position = Vector2(46, 37)
+
+[node name="Chair6" parent="Table4" instance=ExtResource("4_aovj5")]
+position = Vector2(42, -73)
+
+[node name="Table5" parent="." instance=ExtResource("3_w3kk2")]
+position = Vector2(-101, -311)
+
+[node name="Chair1" parent="Table5" instance=ExtResource("4_aovj5")]
+position = Vector2(-86, -2)
+
+[node name="Chair4" parent="Table5" instance=ExtResource("4_aovj5")]
+position = Vector2(-38, 38)
+
+[node name="Chair5" parent="Table5" instance=ExtResource("4_aovj5")]
+position = Vector2(-39, -74)
+
+[node name="Chair6" parent="Table5" instance=ExtResource("4_aovj5")]
+position = Vector2(42, -73)
+
+[node name="Table6" parent="." instance=ExtResource("3_w3kk2")]
+position = Vector2(-338, -87)
+
+[node name="Chair1" parent="Table6" instance=ExtResource("4_aovj5")]
+position = Vector2(-86, -2)
+
+[node name="Chair4" parent="Table6" instance=ExtResource("4_aovj5")]
+position = Vector2(-38, 38)
+
+[node name="Chair5" parent="Table6" instance=ExtResource("4_aovj5")]
+position = Vector2(-39, -74)
+
+[node name="Table7" parent="." instance=ExtResource("3_w3kk2")]
+position = Vector2(-101, 119)
+
+[node name="Chair1" parent="Table7" instance=ExtResource("4_aovj5")]
+position = Vector2(-86, -2)
+
+[node name="Chair2" parent="Table7" instance=ExtResource("4_aovj5")]
+position = Vector2(88, -2)
+
+[node name="Chair4" parent="Table7" instance=ExtResource("4_aovj5")]
+position = Vector2(3, 51)
+
+[node name="Chair6" parent="Table7" instance=ExtResource("4_aovj5")]
+position = Vector2(-2, -76)
+
+[node name="Wall8" parent="." instance=ExtResource("2_twmpn")]
+position = Vector2(394, 258)
+rotation = 1.5708
+scale = Vector2(3, 27)
+
+[node name="Bar" type="StaticBody2D" parent="."]
+
+[node name="BarPolygon" type="Polygon2D" parent="Bar"]
+color = Color(0.435294, 0.294118, 0, 1)
+polygon = PackedVector2Array(-389, 498, -389, 386, -460, 300, -688, 298, -688, 229, -455, 231, -431, 229, -318, 372, -315, 497)
+
+[node name="BarCollision" type="CollisionPolygon2D" parent="Bar"]
+polygon = PackedVector2Array(-389, 498, -389, 386, -460, 300, -688, 298, -688, 229, -455, 231, -431, 229, -318, 372, -315, 497)
+
+[node name="Label" type="Label" parent="Bar"]
+offset_left = -445.0
+offset_top = 306.0
+offset_right = -178.0
+offset_bottom = 346.0
+text = "BAR TABLE"
+
+[node name="BoothTable1" type="StaticBody2D" parent="."]
+position = Vector2(244, 145)
+
+[node name="Polygon2D" type="Polygon2D" parent="BoothTable1"]
+color = Color(0.541176, 0.407843, 0.0862745, 1)
+polygon = PackedVector2Array(-35, -100, 43, -99, 39, 72, -35, 73)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BoothTable1"]
+polygon = PackedVector2Array(-35, -100, 43, -99, 39, 72, -35, 73)
+
+[node name="Label" type="Label" parent="BoothTable1"]
+offset_left = 16.0
+offset_top = -67.0
+offset_right = 125.0
+offset_bottom = -44.0
+rotation = 1.5708
+text = "BOOTH TABLE"
+
+[node name="BoothTable2" type="StaticBody2D" parent="."]
+position = Vector2(542.115, 143.51)
+
+[node name="Polygon2D" type="Polygon2D" parent="BoothTable2"]
+color = Color(0.541176, 0.407843, 0.0862745, 1)
+polygon = PackedVector2Array(-35, -100, 43, -99, 39, 72, -35, 73)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BoothTable2"]
+polygon = PackedVector2Array(-35, -100, 43, -99, 39, 72, -35, 73)
+
+[node name="Label" type="Label" parent="BoothTable2"]
+offset_left = 16.0
+offset_top = -67.0
+offset_right = 125.0
+offset_bottom = -44.0
+rotation = 1.5708
+text = "BOOTH TABLE"
+
+[node name="BoothTable3" type="StaticBody2D" parent="."]
+position = Vector2(239.457, -262.872)
+
+[node name="Polygon2D" type="Polygon2D" parent="BoothTable3"]
+color = Color(0.541176, 0.407843, 0.0862745, 1)
+polygon = PackedVector2Array(-35, -100, 43, -99, 39, 72, -35, 73)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BoothTable3"]
+polygon = PackedVector2Array(-35, -100, 43, -99, 39, 72, -35, 73)
+
+[node name="Label" type="Label" parent="BoothTable3"]
+offset_left = 16.0
+offset_top = -67.0
+offset_right = 125.0
+offset_bottom = -44.0
+rotation = 1.5708
+text = "BOOTH TABLE"
+
+[node name="BoothTable4" type="StaticBody2D" parent="."]
+position = Vector2(548.108, -268.866)
+
+[node name="Polygon2D" type="Polygon2D" parent="BoothTable4"]
+color = Color(0.541176, 0.407843, 0.0862745, 1)
+polygon = PackedVector2Array(-35, -100, 43, -99, 39, 72, -35, 73)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BoothTable4"]
+polygon = PackedVector2Array(-35, -100, 43, -99, 39, 72, -35, 73)
+
+[node name="Label" type="Label" parent="BoothTable4"]
+offset_left = 16.0
+offset_top = -67.0
+offset_right = 125.0
+offset_bottom = -44.0
+rotation = 1.5708
+text = "BOOTH TABLE"
+
+[node name="BoothTable5" type="StaticBody2D" parent="."]
+position = Vector2(240.955, -687.091)
+
+[node name="Polygon2D" type="Polygon2D" parent="BoothTable5"]
+color = Color(0.541176, 0.407843, 0.0862745, 1)
+polygon = PackedVector2Array(-35, -100, 43, -99, 39, 72, -35, 73)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BoothTable5"]
+polygon = PackedVector2Array(-35, -100, 43, -99, 39, 72, -35, 73)
+
+[node name="Label" type="Label" parent="BoothTable5"]
+offset_left = 16.0
+offset_top = -67.0
+offset_right = 125.0
+offset_bottom = -44.0
+rotation = 1.5708
+text = "BOOTH TABLE"
+
+[node name="BoothTable6" type="StaticBody2D" parent="."]
+position = Vector2(533.125, -688.59)
+
+[node name="Polygon2D" type="Polygon2D" parent="BoothTable6"]
+color = Color(0.541176, 0.407843, 0.0862745, 1)
+polygon = PackedVector2Array(-35, -100, 43, -99, 39, 72, -35, 73)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BoothTable6"]
+polygon = PackedVector2Array(-35, -100, 43, -99, 39, 72, -35, 73)
+
+[node name="Label" type="Label" parent="BoothTable6"]
+offset_left = 16.0
+offset_top = -67.0
+offset_right = 125.0
+offset_bottom = -44.0
+rotation = 1.5708
+text = "BOOTH TABLE"
+
+[node name="Chair1" parent="." instance=ExtResource("4_aovj5")]
+position = Vector2(-297, 439)
+
+[node name="Chair2" parent="." instance=ExtResource("4_aovj5")]
+position = Vector2(-298, 384)
+
+[node name="Chair3" parent="." instance=ExtResource("4_aovj5")]
+position = Vector2(-317, 335)
+
+[node name="Chair4" parent="." instance=ExtResource("4_aovj5")]
+position = Vector2(-355, 279)
+
+[node name="Chair5" parent="." instance=ExtResource("4_aovj5")]
+position = Vector2(-398, 229)
+
+[node name="Chair6" parent="." instance=ExtResource("4_aovj5")]
+position = Vector2(-463, 205)
+
+[node name="Chair7" parent="." instance=ExtResource("4_aovj5")]
+position = Vector2(-530, 203)
+
+[node name="Chair8" parent="." instance=ExtResource("4_aovj5")]
+position = Vector2(-589, 204)
+
+[node name="Chair9" parent="." instance=ExtResource("4_aovj5")]
+position = Vector2(-660, 202)

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://phac42s6x3tj" path="res://assets/test_table.png" id="1_u4jnm"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6tvvt"]
-radius = 13.3333
+radius = 11.3333
 height = 39.3333
 
 [node name="Table" type="StaticBody2D" groups=["table"]]
@@ -12,15 +12,16 @@ collision_layer = 4
 collision_mask = 63
 script = ExtResource("1_msk4o")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 13)
-rotation = 1.5708
-scale = Vector2(3, 3)
-shape = SubResource("CapsuleShape2D_6tvvt")
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(3, 3)
 texture = ExtResource("1_u4jnm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
+position = Vector2(0, -24)
+rotation = 1.5708
+scale = Vector2(3, 3)
+shape = SubResource("CapsuleShape2D_6tvvt")
 
 [node name="ChairPoint1" type="Node2D" parent="."]
 position = Vector2(-74, 12)
