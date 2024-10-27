@@ -1,3 +1,4 @@
+class_name table
 extends StaticBody2D
 
 @onready var chair = preload("res://scenes/Decor/chair.tscn")

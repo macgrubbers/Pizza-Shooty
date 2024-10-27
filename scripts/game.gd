@@ -82,12 +82,7 @@ func on_pickup_entered(pickup, itemID, quantity):
 	pickup_list.erase(pickup)
 	
 func setup_level():
-	# Create three tables in set locations for now
-	for n in range(15):
-		var newTable = table_class.instantiate()
-		newTable.set_position(Vector2(randf_range(-1000,1000),randf_range(1000,-1000)))
-		add_child(newTable)
-		table_list.append(newTable)
+	pass
 
 func spawn_customer():
 	var newCustomer = customer_class.instantiate()

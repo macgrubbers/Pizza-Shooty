@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctdugvwi7grry"]
+
+[ext_resource type="Script" path="res://scenes/Decor/table.gd" id="1_6jchb"]
+[ext_resource type="Texture2D" uid="uid://1uvbh02putth" path="res://assets/booth01.png" id="2_ypt73"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jfloe"]
+size = Vector2(23, 44)
+
+[node name="Booth" type="StaticBody2D"]
+script = ExtResource("1_6jchb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, 8)
+shape = SubResource("RectangleShape2D_jfloe")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ypt73")
+
+[node name="ChairPoint1" type="Node2D" parent="."]
+position = Vector2(-22, 16)
+
+[node name="ChairPoint2" type="Node2D" parent="."]
+position = Vector2(-21, -12)
