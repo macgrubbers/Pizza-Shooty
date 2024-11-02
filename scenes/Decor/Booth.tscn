@@ -1,25 +1,61 @@
 [gd_scene load_steps=4 format=3 uid="uid://bkb07wnnagn7j"]
 
-[ext_resource type="Script" path="res://scenes/Decor/table.gd" id="1_6jchb"]
-[ext_resource type="Texture2D" path="res://assets/booth01.png" id="2_ypt73"]
+[ext_resource type="Texture2D" uid="uid://1uvbh02putth" path="res://assets/booth01.png" id="2_ypt73"]
+
+[sub_resource type="GDScript" id="GDScript_yme6j"]
+script/source = "extends chair
+
+var claimed_customer1: CharacterBody2D
+var claimed_customer2: CharacterBody2D
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass
+
+func claim_chair(customer: CharacterBody2D):
+	if not claimed_customer1:
+		print(\"claiming1\")
+		claimed_customer1 = customer
+	elif not claimed_customer2:
+		print(\"claiming2\")
+		claimed_customer2 = customer
+		
+	if claimed_customer1 and claimed_customer2:
+		add_to_group(\"claimed_chairs\")
+		remove_from_group(\"unclaimed_chairs\")
+		
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+func _on_body_entered(body):
+	if body == claimed_customer1:
+		body.sit($SitLocation1.global_position)
+	if body == claimed_customer2:
+		body.sit($SitLocation2.global_position)
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jfloe"]
 size = Vector2(68, 142)
 
-[node name="Booth" type="StaticBody2D"]
-collision_layer = 0
-script = ExtResource("1_6jchb")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(3, 18)
-shape = SubResource("RectangleShape2D_jfloe")
+[node name="Booth" type="Area2D" groups=["obstacles", "unclaimed_chairs"]]
+collision_layer = 4
+collision_mask = 47
+script = SubResource("GDScript_yme6j")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(3, 3)
 texture = ExtResource("2_ypt73")
 
-[node name="ChairPoint1" type="Node2D" parent="."]
-position = Vector2(-22, 16)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, 18)
+shape = SubResource("RectangleShape2D_jfloe")
 
-[node name="ChairPoint2" type="Node2D" parent="."]
-position = Vector2(-21, -12)
+[node name="SitLocation1" type="Node2D" parent="."]
+position = Vector2(0, 26)
+
+[node name="SitLocation2" type="Node2D" parent="."]
+position = Vector2(1, -39)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

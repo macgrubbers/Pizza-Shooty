@@ -9,8 +9,6 @@
 script = ExtResource("1_5vnjt")
 shake_decay_rate = 5.0
 
-[node name="Stage" parent="." instance=ExtResource("2_kptil")]
-
 [node name="Player" parent="." groups=["right_hand"] instance=ExtResource("2_n47hv")]
 z_index = -2
 
@@ -39,3 +37,5 @@ offset_right = 1003.0
 offset_bottom = 93.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 metadata/_edit_use_anchors_ = true
+
+[node name="Stage" parent="." instance=ExtResource("2_kptil")]
