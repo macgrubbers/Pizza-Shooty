@@ -84,14 +84,18 @@ func setup_level():
 	pass
 
 func spawn_customer():
-	var newCustomer = customer_class.instantiate()
-	var startingPosition = $Stage/Enterance.global_position
-	var chair_list = get_tree().get_nodes_in_group('chair')
-	newCustomer.set_position(startingPosition)
-	newCustomer.setup(startingPosition, chair_list)
-	newCustomer.connect("customer_destroyed", on_customer_destroyed)
-	add_child(newCustomer)
-	customer_list.append(newCustomer)
+	var claimedChair = get_tree().get_nodes_in_group('unclaimed_chairs').pick_random()
+	if claimedChair:
+		var newCustomer = customer_class.instantiate()
+		var startingPosition = $Stage/Enterance.global_position
+		newCustomer.set_position(startingPosition)
+		newCustomer.setup(startingPosition, claimedChair)
+		claimedChair.claim_chair(newCustomer) # Claim chair
+		newCustomer.connect("customer_destroyed", on_customer_destroyed)
+		add_child(newCustomer)
+		customer_list.append(newCustomer)
+	else:
+		print("No more chairs, customer not spawned!")
 	
 func spawn_enemy():
 	var enemy = enemy_class.instantiate()

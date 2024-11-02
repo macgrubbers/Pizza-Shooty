@@ -5,16 +5,16 @@ signal customer_destroyed(customer)
 @export var health: int = 100
 @export var speed: float = 50.0
 
-var chairArray: Array
+var claimedChair: Area2D
 var push_dir: Vector2 = Vector2(0, 0)
 var push_strength: float = 0.0
 var push_timer: float = 0.0
-var closestChair: Area2D
 var is_sitting: bool = false
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var damage_text: Label = $DamageTextContainer/DamageText
 @onready var blood_particle = preload("res://scenes/blood_particle.tscn")
+@onready var navigation_agent = get_node("NavAgent")
 
 # Replace with animation tree later?
 var status = "Walking"
@@ -22,23 +22,21 @@ var status = "Walking"
 func _ready():
 	damage_text.visible = false
 
-func setup(pos: Vector2, _chairArray: Array):
-	position = pos
-	chairArray = _chairArray
-	find_nearest_chair()
+
+func setup(pos: Vector2, chair: Area2D):
+	claimedChair = chair
+
 
 func _physics_process(delta):
-	if closestChair:
-		if closestChair.is_sat_in:
-			find_nearest_chair()
+	if not navigation_agent.get_target_position():
+		navigation_agent.set_target_position(claimedChair.global_position)
+	else:
 		if status == "Walking" and !is_sitting:
-			var dir = (closestChair.global_position - global_position).normalized()
+			var dir = (navigation_agent.get_next_path_position() - global_position).normalized()
 			velocity = dir * speed
 			# Handle push
 			push_back(delta)
 			move_and_slide()
-	#if status == "At Table":
-		#pass
 	
 
 func get_hit(damage: int, bullet_trans: Transform2D):
@@ -75,14 +73,6 @@ func _on_animation_tree_animation_finished(anim_name):
 	elif anim_name == "destroy":
 		animation_tree['parameters/conditions/is_destroyed'] = false
 		destroy()
-
-func find_nearest_chair():
-	var closestDistance = 1000000 # just make it big for now
-	for chair in chairArray:
-		var newChairDistance = chair.position.distance_to(position)
-		if (newChairDistance < closestDistance) and !chair.is_sat_in:
-			closestChair = chair
-			closestDistance = newChairDistance
 
 func sit(chairPos: Vector2):
 	position = chairPos
