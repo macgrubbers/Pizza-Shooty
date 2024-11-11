@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://c3ds7mibmqk78"]
+
+[ext_resource type="Script" path="res://3D Test/player_3d.gd" id="1_nxr1a"]
+[ext_resource type="PackedScene" uid="uid://cemdlrkakino4" path="res://3D Test/Gun3D.tscn" id="2_4f7qw"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ubcsw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xn72m"]
+albedo_color = Color(0.0576341, 0.416756, 0.628983, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_u0ult"]
+
+[node name="Player3d" type="CharacterBody3D"]
+script = ExtResource("1_nxr1a")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_ubcsw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_xn72m")
+mesh = SubResource("CapsuleMesh_u0ult")
+
+[node name="Gun3D" parent="." instance=ExtResource("2_4f7qw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.366851, 0.311116, 0.164353)
