@@ -100,14 +100,14 @@ func spawn_customer():
 func spawn_enemy():
 	var enemy = enemy_class.instantiate()
 	enemy.connect("enemy_destroyed", on_enemy_destroyed)
-	var pos = Vector2(randf_range(100, 1000), randf_range(150, 500))
+	var pos = get_tree().get_nodes_in_group('enemy_spawn_points').pick_random().global_position
 	enemy.setup(pos, player)
 	get_tree().root.add_child(enemy)
 	enemy_list.append(enemy)
 	
 func spawn_pickup():
 	var newPickup = pickup_class.instantiate()
-	var pos = Vector2(randf_range(100, 1000), randf_range(150, 500))
+	var pos = $Stage/Enterance.global_position
 	newPickup.set_position(pos)
 	newPickup.connect("pickup_entered", on_pickup_entered)
 	add_child(newPickup)

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bfkg8r4w16tie"]
+
+[ext_resource type="PackedScene" uid="uid://bi7yyldf0tjla" path="res://3D Test/stage3D.tscn" id="1_ff2lm"]
+[ext_resource type="Script" path="res://3D Test/game_3d.gd" id="1_wtvy3"]
+[ext_resource type="PackedScene" uid="uid://c3ds7mibmqk78" path="res://3D Test/Player3D.tscn" id="2_d2sxi"]
+
+[node name="Game3d" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.20127, 0)
+script = ExtResource("1_wtvy3")
+
+[node name="Stage3d" parent="." instance=ExtResource("1_ff2lm")]
+
+[node name="Player3d" parent="." instance=ExtResource("2_d2sxi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.23643, 1, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.642787, 0.766044, 0, -0.766044, -0.642788, 10, 50, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0.939693, -0.34202, 0, 0.34202, 0.939693, 1, 4.10753e-08, -1.49502e-08, -2.96291, 6, 0)
+top_level = true
