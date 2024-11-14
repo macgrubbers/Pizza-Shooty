@@ -22,7 +22,7 @@ func _process(delta):
 	pass
 	
 func _physics_process(delta):
-	DebugDraw3D.draw_ray(player.get_position(),player.get_position() + Vector3(5,5,5), 10)
+	pass
 	
 	'''
 	# Used for camera rotaitons, disabling for now

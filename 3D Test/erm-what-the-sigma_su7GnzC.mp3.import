@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cphpqxf768vvd"
+path="res://.godot/imported/erm-what-the-sigma_su7GnzC.mp3-dacede2818ac9c34cd2d24bbe0a77bc3.mp3str"
+
+[deps]
+
+source_file="res://3D Test/erm-what-the-sigma_su7GnzC.mp3"
+dest_files=["res://.godot/imported/erm-what-the-sigma_su7GnzC.mp3-dacede2818ac9c34cd2d24bbe0a77bc3.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
