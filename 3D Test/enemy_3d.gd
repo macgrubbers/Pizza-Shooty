@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 var health = 100
-var range = 2
+var range = 3
 var player: CharacterBody3D
 @onready var raycast: RayCast3D = $RayCast3D
 
@@ -26,19 +26,35 @@ func _physics_process(delta):
 
 		velocity = current_agent_position.direction_to(next_path_position) * SPEED
 		move_and_slide()
+				
+		look_at(player_position)
+		rotation.x = 0
+		rotation.z = 0
+		
 		
 		if (get_position().distance_to(player_position) <= range):
 			attack(player_position)
+		else:
+			raycast.set_target_position(raycast.get_position())
 		
 
 func attack(player_pos: Vector3):
-	print("attack!")
-	raycast.set_target_position(player_pos.normalized())
+	var ray_destination = get_position().direction_to(player_pos)
+	var target = cast_ray(ray_destination * range)
+	if target:
+		$AnimationPlayer.play("attack")
 	
 func take_damage(amount: float):
 	health -= amount
-	
 	if health <= 0:
 		print("kill")
 		queue_free()
-	
+
+func cast_ray(destination: Vector3):
+	raycast.rotation = -rotation
+	raycast.set_target_position(destination)
+	var collider = raycast.get_collider()
+	if collider:
+		return collider.get_parent()
+	else:
+		return null

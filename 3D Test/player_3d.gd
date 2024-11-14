@@ -3,11 +3,14 @@ extends CharacterBody3D
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
+var health = 100
 
 @onready var equipedItem = $Gun3D
 @onready var camera = get_parent().get_node("Camera3D")
 
 func _physics_process(delta):
+	if health <= 0:
+		return
 	look_at_cursor()
 	
 	# Add the gravity.
@@ -28,11 +31,26 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED) 
 		velocity.z = move_toward(velocity.z, 0, SPEED) 
 	
+	if velocity.length() > 0:
+		var rotation_angle = get_rotation().y * 180/PI
+		var velocity_angle = Vector2(get_velocity().x, get_velocity().z).angle_to(Vector2(1,0)) * 180/PI
+		#print(rotation_angle, "   ", velocity_angle)
+		#print(abs(rotation_angle) - abs(velocity_angle))
+
+
+	if Input.is_action_just_pressed("e"):
+		$lil_goober_enhanced/AnimationPlayer.play("die")
+	
+	if Input.is_action_just_pressed("q"):
+		$lil_goober_enhanced/AnimationPlayer.play("Hello")
+
+	
 	move_and_slide()
 	
 	# Handle shoot and shoot input
 	if Input.is_action_pressed("LMB"):
 		equipedItem.shoot()
+		
 
 
 func look_at_cursor():
@@ -48,3 +66,9 @@ func look_at_cursor():
 		new_rotation = -Vector2(position.x,position.z).angle_to_point(Vector2(cursor_position_on_plane.x,cursor_position_on_plane.z))
 		
 	set_rotation(Vector3(0,new_rotation,0))
+
+func apply_damage(amount: float):
+	health -= amount
+	$AudioStreamPlayer.play(0)
+	if health <= 0:
+		$lil_goober_enhanced/AnimationPlayer.play("die")

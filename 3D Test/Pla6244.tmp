@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://c3ds7mibmqk78"]
+
+[ext_resource type="Script" path="res://3D Test/player_3d.gd" id="1_nxr1a"]
+[ext_resource type="PackedScene" uid="uid://cemdlrkakino4" path="res://3D Test/Gun3D.tscn" id="2_4f7qw"]
+[ext_resource type="PackedScene" uid="uid://clga536jv5y18" path="res://3D Test/lil_goober_enhanced.glb" id="3_3rn2u"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nxy0i"]
+
+[node name="Player3d" type="CharacterBody3D"]
+collision_layer = 4
+script = ExtResource("1_nxr1a")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_nxy0i")
+
+[node name="Gun3D" parent="." instance=ExtResource("2_4f7qw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.175515, 0.793351, 0.550961)
+
+[node name="lil_goober_enhanced" parent="." instance=ExtResource("3_3rn2u")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
