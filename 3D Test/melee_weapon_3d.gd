@@ -2,7 +2,7 @@ extends Node3D
 
 @onready var parent = get_parent()
 var damage = 30
-var knockback = 10
+var knockback_amount = 13
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,6 +15,8 @@ func _process(delta):
 
 
 func _on_area_3d_body_entered(body):
-	if body != parent:
-		body.apply_damage(damage)
+	if body != parent and not body.is_in_group("walls"):
+		var knockback_direction = -(get_global_position() - body.get_global_position()).normalized()
+		knockback_direction.y = 0
+		body.apply_damage(damage, knockback_direction * knockback_amount)
 		print("stabby")

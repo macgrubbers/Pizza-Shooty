@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bfkg8r4w16tie"]
+[gd_scene load_steps=5 format=3 uid="uid://bfkg8r4w16tie"]
 
 [ext_resource type="PackedScene" uid="uid://bi7yyldf0tjla" path="res://3D Test/stage3D.tscn" id="1_ff2lm"]
 [ext_resource type="Script" path="res://3D Test/game_3d.gd" id="1_wtvy3"]
 [ext_resource type="PackedScene" uid="uid://c3ds7mibmqk78" path="res://3D Test/Player3D.tscn" id="2_d2sxi"]
+[ext_resource type="Script" path="res://scripts/UI.gd" id="4_nwag1"]
 
 [node name="Game3d" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.20127, 0)
@@ -19,3 +20,28 @@ transform = Transform3D(1, 0, 0, 0, -0.642787, 0.766044, 0, -0.766044, -0.642788
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0.939693, -0.34202, 0, 0.34202, 0.939693, 1, 4.10753e-08, -1.49502e-08, -2.96291, 6, 0)
 top_level = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchor_right = 0.286458
+anchor_bottom = 0.185185
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_nwag1")
+metadata/_edit_use_anchors_ = true
+
+[node name="AmmoLabel" type="Label" parent="CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.262162
+anchor_top = -0.0625
+anchor_right = -0.108108
+anchor_bottom = 0.34375
+offset_left = 1100.0
+offset_top = 32.0
+offset_right = 1151.0
+offset_bottom = 55.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+metadata/_edit_use_anchors_ = true

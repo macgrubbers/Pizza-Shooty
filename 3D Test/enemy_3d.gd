@@ -1,14 +1,16 @@
-extends CharacterBody3D
+extends PizzaCharacter3D
 
-var health = 100
 var range = 3
 var player: CharacterBody3D
 @onready var raycast: RayCast3D = $RayCast3D
 
-const SPEED = 3.5
 
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 
+func _ready():
+	super()
+	invulnerability_time = 0.2
+	var health = 75
 
 func actor_setup(_player):
 	player = _player
@@ -25,7 +27,6 @@ func _physics_process(delta):
 		var next_path_position = nav_agent.get_next_path_position()
 
 		velocity = current_agent_position.direction_to(next_path_position) * SPEED
-		move_and_slide()
 				
 		look_at(player_position)
 		rotation.x = 0
@@ -36,6 +37,8 @@ func _physics_process(delta):
 			attack(player_position)
 		else:
 			raycast.set_target_position(raycast.get_position())
+			
+		super(delta)
 		
 
 func attack(player_pos: Vector3):
@@ -44,11 +47,10 @@ func attack(player_pos: Vector3):
 	if target:
 		$AnimationPlayer.play("attack")
 	
-func take_damage(amount: float):
-	health -= amount
-	if health <= 0:
-		print("kill")
-		queue_free()
+	
+func die():
+	queue_free()
+
 
 func cast_ray(destination: Vector3):
 	raycast.rotation = -rotation

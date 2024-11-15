@@ -1,6 +1,6 @@
 extends Control
 
-@onready var player = get_parent().get_parent().get_node("Player")
+@onready var player = get_parent().get_parent().get_node("Player3d")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,7 +13,7 @@ func _process(delta):
 
 func _physics_process(delta):
 	$AmmoLabel.text = "Ammo: "
-	if player.rightHand:
-		var maxAmmo = player.rightHand.maxAmmo
-		var currentAmmo = player.rightHand.currentAmmo
+	if player:
+		var maxAmmo = player.get_node("Gun3D").max_ammo
+		var currentAmmo = player.get_node("Gun3D").current_ammo
 		$AmmoLabel.text += str(currentAmmo) + " / " + str(maxAmmo)
