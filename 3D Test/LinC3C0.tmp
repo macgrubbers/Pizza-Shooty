@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://jxutxa3653oh"]
+
+[ext_resource type="Script" path="res://3D Test/line_of_sight.gd" id="1_prxko"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hktsg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_70h2q"]
+transparency = 1
+albedo_color = Color(0.533333, 0.533333, 0.533333, 0.568627)
+
+[node name="LineOfSight" type="Area3D"]
+script = ExtResource("1_prxko")
+
+[node name="CollisionPolygon3D" type="CollisionShape3D" parent="."]
+visible = false
+shape = SubResource("ConvexPolygonShape3D_hktsg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+material_override = SubResource("StandardMaterial3D_70h2q")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0.5, 0)

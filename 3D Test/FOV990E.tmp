@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bigcx4ewgt7nr"]
+
+[ext_resource type="Script" path="res://3D Test/fov.gd" id="1_v2eql"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_6ftdd"]
+
+[node name="Fov" type="Area3D"]
+collision_layer = 0
+collision_mask = 27
+script = ExtResource("1_v2eql")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_6ftdd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+collision_mask = 27

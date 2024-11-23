@@ -56,5 +56,5 @@ func spawn_enemies():
 	var new_enemy = enemy.instantiate()
 	new_enemy.set_position(Vector3(0,1,20))
 	add_child(new_enemy)
-	new_enemy.actor_setup(player)
+	new_enemy.actor_setup($Player3d)
 	
