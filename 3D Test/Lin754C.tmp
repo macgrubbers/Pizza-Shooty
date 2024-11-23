@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://jxutxa3653oh"]
+
+[ext_resource type="Script" path="res://3D Test/line_of_sight.gd" id="1_prxko"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_y0p8y"]
+
+[node name="LineOfSight" type="Area3D"]
+script = ExtResource("1_prxko")
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_y0p8y")

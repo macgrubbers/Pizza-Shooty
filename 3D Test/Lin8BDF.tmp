@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://jxutxa3653oh"]
+
+[ext_resource type="Script" path="res://3D Test/line_of_sight.gd" id="1_prxko"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_1avuw"]
+height = 0.001
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_70h2q"]
+transparency = 1
+albedo_color = Color(0.533333, 0.533333, 0.533333, 0.568627)
+
+[node name="LineOfSight" type="Area3D"]
+script = ExtResource("1_prxko")
+
+[node name="CollisionPolygon3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_1avuw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_70h2q")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]

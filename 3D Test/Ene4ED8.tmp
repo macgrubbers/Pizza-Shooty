@@ -1,0 +1,97 @@
+[gd_scene load_steps=14 format=3 uid="uid://gd2vj4l27fn8"]
+
+[ext_resource type="Script" path="res://3D Test/enemy_3d.gd" id="1_o5v8j"]
+[ext_resource type="PackedScene" uid="uid://dw36wo31c4gny" path="res://3D Test/MeleeWeapon3D.tscn" id="2_lt1xv"]
+[ext_resource type="PackedScene" uid="uid://qnggq20h5m3f" path="res://3D Test/State Machine/StateMachine.tscn" id="4_gi840"]
+[ext_resource type="PackedScene" uid="uid://bigcx4ewgt7nr" path="res://3D Test/FOV.tscn" id="4_q3c2x"]
+[ext_resource type="PackedScene" uid="uid://1tb8q41qotj" path="res://3D Test/State Machine/Patrol.tscn" id="6_pjr5i"]
+[ext_resource type="PackedScene" uid="uid://dwsb402qrxff" path="res://3D Test/State Machine/Pursue.tscn" id="7_cjvo8"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i4evj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oif6g"]
+albedo_color = Color(0.627305, 0.206439, 9.62615e-08, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_mvd27"]
+
+[sub_resource type="GDScript" id="GDScript_620yt"]
+script/source = "extends NavigationAgent3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+func track_player():
+	
+"
+
+[sub_resource type="Animation" id="Animation_pct1f"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeleeWeapon3d")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0.561832)
+
+[sub_resource type="Animation" id="Animation_lkd7n"]
+resource_name = "attack"
+length = 0.5
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeleeWeapon3d")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0.561832, 0.266667, 1, 0, 0, -0.4, 0.466667, 1, 0, 0, 0.561832)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p4g4u"]
+_data = {
+"RESET": SubResource("Animation_pct1f"),
+"attack": SubResource("Animation_lkd7n")
+}
+
+[node name="Enemy3d" type="CharacterBody3D" groups=["enemies"]]
+collision_layer = 8
+collision_mask = 31
+script = ExtResource("1_o5v8j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_i4evj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_oif6g")
+mesh = SubResource("CapsuleMesh_mvd27")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_height_offset = -1.0
+path_max_distance = 30.01
+script = SubResource("GDScript_620yt")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+collision_mask = 9
+collide_with_areas = true
+debug_shape_thickness = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_p4g4u")
+}
+
+[node name="MeleeWeapon3d" parent="." instance=ExtResource("2_lt1xv")]
+transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 0, 0, 0.561832)
+
+[node name="Fov" parent="." instance=ExtResource("4_q3c2x")]
+
+[node name="StateMachine" parent="." instance=ExtResource("4_gi840")]
+
+[node name="Patrol" parent="StateMachine" instance=ExtResource("6_pjr5i")]
+
+[node name="Pursue" parent="StateMachine" instance=ExtResource("7_cjvo8")]

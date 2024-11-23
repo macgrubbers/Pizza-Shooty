@@ -1,16 +1,15 @@
 class_name PizzaCharacter3D
 extends CharacterBody3D
 
-
 @onready var invulnerability_timer: Timer = Timer.new()
 @onready var invulnerability_time: float = 0.2
-
 
 var is_invulernable = false
 var health = 100
 var SPEED = 3.5
 var knockback: Vector3
 var knockback_restore_rate: float = 0.1
+var player: PizzaCharacter3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -49,6 +48,9 @@ func _on_invulernability_timer_timeout():
 	invulnerability_timer.stop()
 	is_invulernable = false
 	
+	
+func actor_setup(_player):
+	player = _player
 
 func handle_animation():
 	pass
@@ -56,3 +58,7 @@ func handle_animation():
 	#	return
 	# if walking this way:
 	#	animation this way
+	
+
+func get_player() -> PizzaCharacter3D:
+	return player
