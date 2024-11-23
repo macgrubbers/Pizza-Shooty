@@ -79,5 +79,4 @@ func raycast_towards_player(object_position: Vector3):
 			player_found = false
 			raycast.set_target_position(Vector3.ZERO)
 
-func look_for_corners():
 	

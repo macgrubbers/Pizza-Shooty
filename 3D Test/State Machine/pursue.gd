@@ -21,4 +21,4 @@ func physics_update(_delta: float) -> void:
 		enemy.velocity.y = 0
 	
 	if enemy.nav_agent.is_navigation_finished():
-		pass
+		enemy.velocity = Vector3.ZERO
